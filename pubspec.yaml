@@ -17,6 +17,8 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  # 网络请求
+  dio: ^3.0.9
   flutter:
     sdk: flutter
 
