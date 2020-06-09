@@ -62,6 +62,8 @@ class Datas {
   int chapterId;
   String chapterName;
   String niceDate;//分享的时间
+  int type;//type=1 是置顶数据
+  List<Tag> tags;
 
   Datas.fromJson(Map<String,dynamic> json):
       title = json["title"],
@@ -72,13 +74,23 @@ class Datas {
       superChapterName = json["superChapterName"],
       chapterId = json["chapterId"],
       chapterName = json["chapterName"],
-      niceDate = json["niceDate"];
+      niceDate = json["niceDate"],
+      type = json["type"],
+      tags = (json["tags"] as List).map((i)=>Tag.fromJson((i))).toList();
 
   @override
   String toString() {
     return "Datas{title:$title, fresh:$fresh, author$author, "
         "shareUser:$shareUser, superChapterId:$superChapterId, "
         "superChapterName:$superChapterName, chapterId:$chapterId, "
-        "chapterName:$chapterName, niceDate:$niceDate}";
+        "chapterName:$chapterName, niceDate:$niceDate}, type:$type";
   }
+}
+
+class Tag{
+  String name;
+  String url;
+  Tag.fromJson(Map<String,dynamic> json)
+    : name = json["name"],
+      url = json["url"];
 }

@@ -42,4 +42,34 @@ class CommonUtils {
     );
   }
 
+  static Widget borderText(String content,{Color textColor, double borderWidth, Color borderColor}){
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 3),
+      child: Text(
+        content,
+        style: TextStyle(
+          fontSize: 11,
+          color: textColor == null?Colors.red:textColor,
+        ),
+      ),
+      padding: EdgeInsets.symmetric(vertical: 0.5,horizontal: 2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+        border: Border.all(
+          color: borderColor == null ? Colors.red : borderColor,
+          width: borderWidth == null ? 1 : borderWidth,
+        )
+      ),
+    );
+  }
+
+  //剪切时间字符串，2020-01-01 00:00:00 切为 2020-01-01
+  static String cutTimeString(String time){
+    if(time.length>=9){
+      return time.substring(0,10);
+    }else{
+      return time;
+    }
+  }
+
 }

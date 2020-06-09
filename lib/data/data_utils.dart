@@ -3,12 +3,10 @@ import 'package:wanandroidflutter/data/apis.dart';
 import 'package:wanandroidflutter/data/http_utils.dart';
 import 'package:wanandroidflutter/data/model/base_response.dart';
 import 'package:wanandroidflutter/data/model/home_article_model.dart';
-
 DataUtils dataUtils = DataUtils();
 class DataUtils {
 
-  static DataUtils _instance;
-  static DataUtils get instance => _getInstance();
+  static DataUtils _instance = DataUtils._internal();
   factory DataUtils() => _instance;
   DataUtils._internal();
   static DataUtils _getInstance(){
