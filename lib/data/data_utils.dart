@@ -16,9 +16,9 @@ class DataUtils {
     return _instance;
   }
 
-  Future<List<Datas>> getHomeArticleList() async{
+  Future<List<Datas>> getHomeArticleList(int index) async{
     HomeArticleModel homeArticleModel
-    = HomeArticleModel.fromJson(await httpUtils.get(Apis.homeArticleList));
+    = HomeArticleModel.fromJson(await httpUtils.get(Apis.homeArticleList+"$index/json"));
     return homeArticleModel == null? Future.error("homeArticleModel为空"):homeArticleModel.datas;
   }
 

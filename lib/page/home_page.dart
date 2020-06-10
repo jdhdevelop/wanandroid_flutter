@@ -14,7 +14,7 @@ class _HomePage extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    mFuture = dataUtils.getHomeArticleList();
+    mFuture = dataUtils.getHomeArticleList(0);
   }
 
   @override
@@ -51,6 +51,7 @@ class _HomePage extends State<HomePage> {
                     });
                   },
                   child: ListView.builder(
+                    addAutomaticKeepAlives: true,
                     itemCount: datas.length,
                     itemBuilder: (context, index) {
                       Datas entity = datas[index];
