@@ -13,7 +13,7 @@ class WanAndroidAppPage extends StatelessWidget{
     return MaterialApp(
       debugShowCheckedModeBanner: false,//去掉debug模式下，右上角的banner
       routes: Routes.routes,
-      home: LoginPage(),
+      home: MinePage(),
     );
   }
 
