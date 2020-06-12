@@ -61,18 +61,17 @@ class _BottomSheet extends State<BottomSheetWidget> {
     int listLength = list.length;
 
     /// 最后还有一个cancel，所以加1
-    itemCount = listLength + 1;
     var height;
     if (listLength == 1) {
-      height = ((listLength + 2) * 48).toDouble();
+      height = ((listLength + 1) * itemHeight).toDouble();
     } else {
-      height = ((listLength + 1) * 48).toDouble();
+      height = ((listLength ) * itemHeight).toDouble();
     }
 
-    var cancelContainer = getCancelContainer();
+    var cancelContainer = getCancelContainer(deviceWidth);
     var listView = getListView(cancelContainer, listLength);
     var totalContainer = getTotalContainer(height, deviceWidth, listView);
-    var stack = getStack(totalContainer);
+    var stack = getStack(totalContainer, cancelContainer);
     return stack;
   }
 
@@ -82,14 +81,16 @@ class _BottomSheet extends State<BottomSheetWidget> {
       return Container();
     }
     var text = list[index];
-    return widget.item!=null?item:Container(
-      height: itemHeight,
-      margin: EdgeInsets.only(left: 10, right: 10),
-      decoration: getDecoration(index, listLength),
-      child: Center(
-        child: _getContentWidget(text, index, listLength),
-      ),
-    );
+    return widget.item != null
+        ? item
+        : Container(
+            height: itemHeight,
+            margin: EdgeInsets.only(left: 10, right: 10),
+            decoration: getDecoration(index, listLength),
+            child: Center(
+              child: _getContentWidget(text, index, listLength),
+            ),
+          );
   }
 
   //item中内层widget
@@ -161,10 +162,12 @@ class _BottomSheet extends State<BottomSheetWidget> {
     }
   }
 
-  getCancelContainer() {
+  getCancelContainer(double deviceWidth) {
+    print("cancelWidth:${deviceWidth * 0.98}");
     return Container(
+      width: deviceWidth * 0.98,
       height: itemHeight,
-      margin: EdgeInsets.only(left: 10, right: 10),
+      margin: EdgeInsets.only(left: 15, right: 15,top: 10,bottom: 10),
       decoration: BoxDecoration(
         color: Colors.white, // 底色
         borderRadius: BorderRadius.circular(circular),
@@ -188,34 +191,31 @@ class _BottomSheet extends State<BottomSheetWidget> {
 
   getListView(Widget cancelContainer, int listLength) {
     return ListView.builder(
-        itemCount: itemCount,
+        itemCount: listLength,
         itemBuilder: (BuildContext context, int index) {
-          if (index == itemCount - 1) {
-            return new Container(
-              child: cancelContainer,
-              margin: const EdgeInsets.only(top: 10),
-            );
-          }
           return _buildItem(context, index, listLength);
         });
   }
 
   getTotalContainer(var height, var deviceWidth, Widget listView) {
+    print("getTotalContainer:${deviceWidth * 0.98}");
     return Container(
-      child: listView,
+      child: Align(child: listView,alignment: Alignment.bottomCenter,),
       height: height,
       width: deviceWidth * 0.98,
     );
   }
 
-  getStack(Widget totalContainer) {
-    return Stack(
-      alignment: Alignment.center,
+  getStack(Widget totalContainer, Widget cancelContainer) {
+    return Column(
       children: <Widget>[
-        Positioned(
-          bottom: 0,
-          child: totalContainer,
+        Expanded(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: totalContainer,
+          ),
         ),
+        cancelContainer,
       ],
     );
   }
