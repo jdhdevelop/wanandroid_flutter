@@ -20,9 +20,6 @@ class _LoginPage extends State<LoginPage> {
     for (int i = 0; i < 20; i++) {
       data.add("item:$i");
     }
-    dialog = Dialog(
-      child: spinkit,
-    );
   }
 
   var spinkit = SpinKitDoubleBounce(
@@ -50,31 +47,6 @@ class _LoginPage extends State<LoginPage> {
                     list.add('内容问题');
                     list.add('使用问题');
                     list.add('其他问题');
-//                    list.add('意见与建议');
-//                    list.add('功能问题');
-//                    list.add('内容问题');
-//                    list.add('使用问题');
-//                    list.add('其他问题');
-//                    list.add('意见与建议');
-//                    list.add('功能问题');
-//                    list.add('内容问题');
-//                    list.add('使用问题');
-//                    list.add('其他问题');
-//                    list.add('意见与建议');
-//                    list.add('功能问题');
-//                    list.add('内容问题');
-//                    list.add('使用问题');
-//                    list.add('其他问题');
-//                    list.add('意见与建议');
-//                    list.add('功能问题');
-//                    list.add('内容问题');
-//                    list.add('使用问题');
-//                    list.add('其他问题');
-//                    list.add('意见与建议');
-//                    list.add('功能问题');
-//                    list.add('内容问题');
-//                    list.add('使用问题');
-//                    list.add('其他问题');
                     return BottomSheetWidget(
                       itemGravity: Alignment.center,
                       title: 'title',
@@ -129,27 +101,13 @@ class _LoginPage extends State<LoginPage> {
     return Future.delayed(Duration(seconds: 5), () => datas);
   }
 
-  Dialog dialog;
   showLoading() {
-//    showDialog(
-//        context: context,
-//        barrierDismissible: false,
-//        builder: (context) {
-//          return SimpleDialog(
-//            children: <Widget>[
-//              spinkit,
-//              SizedBox(height: 10,),
-//              Center(child: Text('数据加载中...'),),
-//            ],
-//          );
-//        }
-//        );
   showDialog(context: context,
     barrierDismissible: false,
     builder: (context){
     return LoadingDialog(
       color: Colors.orangeAccent,
-      animationType: AnimationType.ChasingDots,
+      animationType: AnimationType.Wave,
     );
     }
   );

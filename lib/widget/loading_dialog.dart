@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
+///loading对话框简单封装
 class LoadingDialog extends Dialog {
   final String loadingText;
   final AnimationType animationType;
@@ -8,6 +8,7 @@ class LoadingDialog extends Dialog {
   final double animationSize;
   final double size;
   var spinkit;
+  final Duration duration;
 
   LoadingDialog(
       {Key key,
@@ -15,6 +16,7 @@ class LoadingDialog extends Dialog {
       this.animationType = AnimationType.FadingCircle,
       this.color = Colors.cyanAccent,
       this.animationSize = 50,
+        this.duration = const Duration(milliseconds: 1000),
       this.size = 120})
       : super(key: key);
 
@@ -53,36 +55,42 @@ class LoadingDialog extends Dialog {
         spinkit = SpinKitWave(
           color: color,
           size: animationSize,
+          duration: duration,
         );
         break;
       case AnimationType.DoubleBonce:
         spinkit = SpinKitDoubleBounce(
           color: color,
           size: animationSize,
+          duration: duration,
         );
         break;
       case AnimationType.WanderingCubes:
         spinkit = SpinKitWanderingCubes(
           color: color,
           size: animationSize,
+          duration: duration,
         );
         break;
       case AnimationType.CubeGrid:
         spinkit = SpinKitCubeGrid(
           color: color,
           size: animationSize,
+          duration: duration,
         );
         break;
       case AnimationType.Circle:
         spinkit = SpinKitCircle(
           color: color,
           size: animationSize,
+          duration: duration,
         );
         break;
       case AnimationType.ChasingDots:
         spinkit = SpinKitChasingDots(
           color: color,
           size: animationSize,
+          duration: duration,
         );
         break;
       case AnimationType.FadingCube:
@@ -95,6 +103,7 @@ class LoadingDialog extends Dialog {
         spinkit = SpinKitFadingCircle(
           color: color,
           size: animationSize,
+          duration: duration,
         );
         break;
     }
